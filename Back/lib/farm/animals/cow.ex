@@ -17,4 +17,13 @@ defmodule Farm.Animals.Cow do
     |> cast(attrs, [:name, :dob, :breed, :owner])
     |> validate_required([:name, :dob, :breed, :owner])
   end
+
+  def age_in_months(dob) do
+    (Date.utc_today.year - dob.year) * 12 + (Date.utc_today.month - dob.month)
+  end
+
+  def calculate_age() do
+  
+    
+  end
 end

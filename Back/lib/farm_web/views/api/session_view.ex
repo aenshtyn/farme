@@ -8,7 +8,6 @@ defmodule FarmWeb.Api.SessionView do
         token: jwt,
         username: user.username,
         email: user.email
-        
       },
       message: "You have successfully signed in with email:" <> " " <> user.email
     }

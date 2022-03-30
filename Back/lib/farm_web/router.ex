@@ -22,7 +22,9 @@ defmodule FarmWeb.Router do
 
     get "/", PageController, :index
     resources "/milks", MilkController
-    # resources "/cows", CowController
+    resources "/cows", CowController
+    resources "/machinerys", MachineryController
+    resources "/medications", MedicationController
   end
 
   pipeline :api_authenticated do
@@ -35,9 +37,11 @@ defmodule FarmWeb.Router do
 
     resources "/milks", MilkController
     resources "/cows", CowController
+    resources "/machinerys", MachineryController
+    resources "/medications", MedicationController
     post "/register", UserRegistrationController, :register
     post "/sign_in", SessionController, :create
-    # post "/sign_out", SessionController, delete
+    post "/sign_out", SessionController, :delete
   end
 
   ## AUthenticated api routes

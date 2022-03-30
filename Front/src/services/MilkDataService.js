@@ -1,14 +1,13 @@
 import http from "../http-common";
 class MilkDataService {
     getAll() {
-        return http.get("/milks");
+        return http.get('milks');
     }
-
     get(id) {
         return http.get(`/milks/${id}`);
     }
     create(data) {
-        return http.post("/milks", data);
+        return http.post('/milks', data);
     }
     update(id, data) {
         return http.put(`/milks/${id}`, data);

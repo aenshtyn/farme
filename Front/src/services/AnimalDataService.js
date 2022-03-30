@@ -1,26 +1,32 @@
-import http from "../http-common";
+// import http from "../http-common";
+import axios from 'axios';
+axios.defaults.headers.common = {
+    'X-Requested-With': 'XMLHttpRequest',
+    'X-CSRF-TOKEN': window.csrf_token
+};
+const API_URL = 'http://localhost:4000/api/';
+
 class AnimalDataService {
     getAll() {
-        return http.get("/cows");
+        return axios.get(API_URL + 'cows');
     }
-
     get(id) {
-        return http.get(`/cows/${id}`);
+        return axios.get(API_URL + `cows/${id}`);
     }
     create(data) {
-        return http.post("/cows", data);
+        return axios.post(API_URL + 'cows', data);
     }
     update(id, data) {
-        return http.put(`/cows/${id}`, data);
+        return axios.put(API_URL + `cows/${id}`, data);
     }
     delete(id) {
-        return http.delete(`/cows/${id}`);
+        return axios.delete(API_URL + `cows/${id}`);
     }
     deleteAll() {
-        return http.delete(`/cows`);
+        return axios.delete(API_URL + `cows`);
     }
     findByTitle(title) {
-        return http.get(`/cows?title=${title}`);
+        return axios.get(API_URL + `cows?title=${title}`);
     }
 }
 

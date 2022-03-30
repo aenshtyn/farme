@@ -1,6 +1,6 @@
 <template>
 
-<!-- <meta name="csrf-token" content="{{ csrf_token() }}"> -->
+<meta name="csrf-token" content="{{ csrf_token() }}">
 <!-- <SideNav/> -->
 <Nav/>
   <div id="app">
@@ -86,6 +86,19 @@
                 <a href="hr" class="nav-link px-0 align-middle">
                   <i class="fs-4 bi-diagram-2"></i>
                   <span class="ms-1 d-none d-sm-inline">&nbsp; HR</span>
+                </a>
+              </li>
+                         <li>
+                <a href="animals/cows/" class="nav-link px-0 align-middle">
+                  <i class="fs-4 fs- bi-grid"></i>
+                  <span class="ms-1 d-none d-sm-inline">&nbsp; Animals</span>
+                </a>
+              </li>
+
+                                     <li>
+                <a href="animals/cows/add" class="nav-link px-0 align-middle">
+                  <i class="fs-4 fs- bi-grid"></i>
+                  <span class="ms-1 d-none d-sm-inline">&nbsp; Animals</span>
                 </a>
               </li>
 

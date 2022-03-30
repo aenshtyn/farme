@@ -36,9 +36,9 @@
           </router-link>
         </li>
         <li class="nav-item">
-          <a class="nav-link" @click.prevent="logOut">
-            <font-awesome-icon icon="sign-out-alt" /> LogOut
-          </a>
+          <router-link to="/logout" class="nav-link">
+            <font-awesome-icon icon="sign-in-alt" /> Sign Out
+          </router-link>
         </li>
       </div>
     </nav>
@@ -68,7 +68,7 @@ export default {
   },
   methods: {
     logOut() {
-      this.$store.dispatch('auth/logout');
+      this.$store.dispatch('/logout');
       this.$router.push('/login');
     }
   }

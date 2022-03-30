@@ -22,26 +22,26 @@
           name="breed"
         />
       </div>
-          <div class="form-group">
+      <div class="form-group">
         <label for="age">Date of Birth</label>
         <input
-        type="date"
+          type="date"
           class="form-control"
           id="age"
           required
           v-model="cow.dob"
           name="age"
         />
-            <div class="form-group">
-        <label for="owner">owner</label>
-        <input
-          class="form-control"
-          id="owner"
-          required
-          v-model="cow.owner"
-          name="owner"
-        />
-      </div>
+        <div class="form-group">
+          <label for="owner">owner</label>
+          <input
+            class="form-control"
+            id="owner"
+            required
+            v-model="cow.owner"
+            name="owner"
+          />
+        </div>
       </div>
       <button @click="saveCow" class="btn btn-success">Submit</button>
     </div>
@@ -61,35 +61,34 @@ export default {
         id: null,
         name: "",
         breed: "",
-        dob:"",
-        owner:"",
+        dob: "",
+        owner: "",
       },
     };
   },
   methods: {
     saveCow() {
       var data = {
-        name: this.cow.name, 
+        name: this.cow.name,
         breed: this.cow.breed,
         dob: this.cow.dob,
-        owner: this.cow.owner
+        owner: this.cow.owner,
       };
       AnimalDataService.create(data)
-        .then(response => {
-          this.cow.id = response.data.data.id;
+        .then((response) => {
+          this.cow.id = response.data.id;
           console.log(response.data);
-          this.submitted = true;
         })
-        .catch(e => {
+        .catch((e) => {
           console.log(e);
         });
     },
-    
+
     newCow() {
-    //   this.submitted = false;
+      //   this.submitted = false;
       this.cow = {};
-    }
-  }
+    },
+  },
 };
 </script>
 <style>

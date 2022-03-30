@@ -2,7 +2,7 @@
   <div class="container">
     <header class="jumbotron">
       <h3>
-        <strong>{{currentUser.email}}</strong> Profile
+        <strong>{{currentUser.username}}</strong> Profile
       </h3>
     </header>
     <p>

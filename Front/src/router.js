@@ -52,9 +52,9 @@ const routes = [{
     {
         path: "/signup",
         alias: "/signup",
-        name: "register",
+        name: "signup",
         component: () =>
-            import ("./components/registration/signup.vue")
+            import ("./components/registration/Register.vue")
     },
     {
         path: "/profile",
@@ -71,6 +71,7 @@ const routes = [{
         component: () =>
             import ("./components/registration/Login.vue")
     },
+
 
 
 ];
