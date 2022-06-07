@@ -20,4 +20,19 @@ defmodule Farm.AnimalsFixtures do
 
     cow
   end
+
+  @doc """
+  Generate a sheep.
+  """
+  def sheep_fixture(attrs \\ %{}) do
+    {:ok, sheep} =
+      attrs
+      |> Enum.into(%{
+        age: "some age",
+        name: "some name"
+      })
+      |> Farm.Animals.create_sheep()
+
+    sheep
+  end
 end

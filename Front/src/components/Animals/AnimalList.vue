@@ -1,116 +1,74 @@
 <template>
-  <div class="list row">
-    <div class="col-md-8">
-      <div class="input-group mb-3">
-        <input type="text" class="form-control" placeholder="Search by title"
-          v-model="title"/>
-        <div class="input-group-append">
-          <button class="btn btn-outline-secondary" type="button"
-            @click="searchName"
-          >
-            Search
-          </button>
-        </div>
+  <div class="container">
+    <div class="row">
+      <div class="col">
+        <table class="table">
+          <thead>
+            <tr class="text-muted">
+              <th scope="col">#</th>
+              <th scope="col">Name</th>
+              <th scope="col">Age</th>
+              <th scope="col">Breed</th>
+              <th scope="col">Owner</th>
+              
+             
+            </tr>
+          </thead>
+
+          <tbody>
+            <tr v-for="item in cows" :key="item.id">
+              <th scope="row"> {{ item.id }}</th>
+              <th scope="row"> {{ item.name }}</th>
+              <th scope="row"> {{ item.dob }}</th>
+              <th scope="row"> {{ item.breed }}</th>
+              <th scope="row"> {{ item.owner }}</th>
+              <!-- <th scope="row"> {{ item. }}</th> -->
+              <!-- <td>John Doe</td>
+              <td><input type="number"           
+              name="name"
+              id="name"
+              required=""
+              class="shadow-sm focus:ring-blue-500 placeholder:text-gray-400 focus:border-blue-500 block w-full sm:text-sm border-gray-300 rounded-md"
+              placeholder="Enter milk volume..."></td>
+              <td><input type="number"></td>
+              <td>3</td> -->
+              <td><button type="button" class="btn btn-sm btn-primary" >Save</button></td>
+            </tr>
+          </tbody>
+        </table>
+
       </div>
     </div>
-    <div class="col-md-6">
-      <h4>Cows List</h4>
-      <ul class="list-group">
-        <li class="list-group-item"
-          :class="{ active: index == currentIndex }"
-          v-for="(cow, index) in cows"
-          :key="index"
-          @click="setActiveCow(cow, index)"
-        >
-          {{ cow.name }}
-        </li>
-      </ul>
-      <button class="m-3 btn btn-sm btn-danger" @click="removeAllCows">
-        Remove All
-      </button>
-    </div>
-    <div class="col-md-6">
-      <div v-if="currentCow">
-        <h4>Cow</h4>
-        <div>
-          <label><strong>Title:</strong></label> {{ currentCow.name }}
-        </div>
-        <div>
-          <label><strong>Description:</strong></label> {{ currentCow.breed }}
-        </div>
-                <div>
-          <label><strong>Owner:</strong></label> {{ currentCow.owner }}
-        </div>
-                <div>
-          <label><strong>Date of Birth:</strong></label> {{ currentCow.dob }}
-        </div>
-        <router-link :to="'/cows/' + currentCow.id" class="badge badge-warning">Edit</router-link>
-      </div>
-      <div v-else>
-        <br />
-        <p>Please click on a Cow...</p>
-      </div>
-    </div>
+        <!-- <button type="button" class="btn btn-primary">Save</button> -->
   </div>
+
 </template>
 <script>
-import AnimalDataService from "../../services/AnimalDataService";
+import useCows from "../../services/AnimalDataService";
+import { onMounted } from "vue";
+import { ref } from 'vue';
 export default {
-  name: "cows-list",
-  data() {
+   setup() {
+    const selected = ref();
+    const { cows, getCows, destroyCow } = useCows();
+
+    const deleteCow = async (id) => {
+      if (!window.confirm("You sure?")) {
+        return;
+      }
+
+      await destroyCow(id);
+      await getCows();
+    };
+
+    onMounted(getCows);
+
     return {
-      cows: [],
-      currentCow: null,
-      currentIndex: -1,
-      title: ""
+      cows,
+      deleteCow,
+      selected,
     };
   },
-  methods: {
-    retrieveCows() {
-      AnimalDataService.getAll()
-        .then(response => {
-          this.cows = response.data.data;
-          console.log(response.data);
-        })
-        .catch(e => {
-          console.log(e);
-        });
-    },
-    refreshList() {
-      this.retrieveCows();
-      this.currentCow = null;
-      this.currentIndex = -1;
-    },
-    setActiveCow(cow, index) {
-      this.currentCow = cow;
-      this.currentIndex = cow ? index : -1;
-    },
-    removeAllCows() {
-      AnimalDataService.deleteAll()
-        .then(response => {
-          console.log(response.data);
-          this.refreshList();
-        })
-        .catch(e => {
-          console.log(e);
-        });
-    },
-    
-    searchTitle() {
-      AnimalDataService.findByTitle(this.title)
-        .then(response => {
-          this.cows = response.data;
-          this.setActiveCow(null);
-          console.log(response.data);
-        })
-        .catch(e => {
-          console.log(e);
-        });
-    }
-  },
-  mounted() {
-    this.retrieveCows();
-  }
 };
 </script>
 <style>

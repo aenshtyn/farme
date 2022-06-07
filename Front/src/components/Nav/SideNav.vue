@@ -1,6 +1,6 @@
 <template>
-<Nav/>
-  <div id="app">
+<!-- <Nav/> -->
+ <div id="app">
     <div class="container-fluid" style="font: poppins">
       <div class="row flex-nowrap">
         <div
@@ -16,14 +16,14 @@
               style="font-color: #aeb9be"
             >
               <li class="nav-item">
-                <a href="dashboard" class="nav-link align-middle px-0">
+                <a href="/dashboard" class="nav-link align-middle px-0">
                   <i class="fs-4 bi-house"></i>
                   <span class="ms-1 d-none d-sm-inline">&nbsp; Dashboard</span>
                 </a>
               </li>
               <li>
                 <a
-                  href="production"
+                  href="/production"
                   data-bs-toggle="collapse"
                   class="nav-link px-0 align-middle"
                 >
@@ -32,14 +32,14 @@
                 </a>
               </li>
               <li>
-                <a href="orders" class="nav-link px-0 align-middle">
+                <a href="/orders" class="nav-link px-0 align-middle">
                   <i class="fs-4 bi-table"></i>
                   <span class="ms-1 d-none d-sm-inline">&nbsp; Orders</span></a
                 >
               </li>
               <li>
                 <a
-                  href="products"
+                  href="/products"
                   data-bs-toggle="collapse"
                   class="nav-link px-0 align-middle"
                 >
@@ -74,20 +74,33 @@
                 </ul>
               </li>
               <li>
-                <a href="customers" class="nav-link px-0 align-middle">
+                <a href="/customers" class="nav-link px-0 align-middle">
                   <i class="fs-4 bi-people"></i>
                   <span class="ms-1 d-none d-sm-inline">&nbsp; Customers</span>
                 </a>
               </li>
               <li>
-                <a href="hr" class="nav-link px-0 align-middle">
+                <a href="/hr" class="nav-link px-0 align-middle">
                   <i class="fs-4 bi-diagram-2"></i>
                   <span class="ms-1 d-none d-sm-inline">&nbsp; HR</span>
                 </a>
               </li>
+                         <li>
+                <a href="/animals/cows/" class="nav-link px-0 align-middle">
+                  <i class="fs-4 fs- bi-grid"></i>
+                  <span class="ms-1 d-none d-sm-inline">&nbsp; Animals</span>
+                </a>
+              </li>
+
+                                     <li>
+                <a href="/animals/cows/add" class="nav-link px-0 align-middle">
+                  <i class="fs-4 fs- bi-grid"></i>
+                  <span class="ms-1 d-none d-sm-inline">&nbsp; Add Animal</span>
+                </a>
+              </li>
 
               <li>
-                <a href="inventory" class="nav-link px-0 align-middle">
+                <a href="/inventory" class="nav-link px-0 align-middle">
                   <i class="fs-4 bi-house-door"></i>
                   <span class="ms-1 d-none d-sm-inline">&nbsp; Inventory</span>
                 </a>
@@ -106,9 +119,9 @@
 </template>
 
 <script>
-import Nav from "./components/Nav/nav";
+// import Nav from "./components/Nav/Nav";
 export default {
-  components: {Nav}
+  // components: {Nav}
 };
 </script>
 

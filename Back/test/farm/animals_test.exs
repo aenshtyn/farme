@@ -73,4 +73,60 @@ defmodule Farm.AnimalsTest do
       assert %Ecto.Changeset{} = Animals.change_cow(cow)
     end
   end
+
+  describe "sheeps" do
+    alias Farm.Animals.Sheep
+
+    import Farm.AnimalsFixtures
+
+    @invalid_attrs %{age: nil, name: nil}
+
+    test "list_sheeps/0 returns all sheeps" do
+      sheep = sheep_fixture()
+      assert Animals.list_sheeps() == [sheep]
+    end
+
+    test "get_sheep!/1 returns the sheep with given id" do
+      sheep = sheep_fixture()
+      assert Animals.get_sheep!(sheep.id) == sheep
+    end
+
+    test "create_sheep/1 with valid data creates a sheep" do
+      valid_attrs = %{age: "some age", name: "some name"}
+
+      assert {:ok, %Sheep{} = sheep} = Animals.create_sheep(valid_attrs)
+      assert sheep.age == "some age"
+      assert sheep.name == "some name"
+    end
+
+    test "create_sheep/1 with invalid data returns error changeset" do
+      assert {:error, %Ecto.Changeset{}} = Animals.create_sheep(@invalid_attrs)
+    end
+
+    test "update_sheep/2 with valid data updates the sheep" do
+      sheep = sheep_fixture()
+      update_attrs = %{age: "some updated age", name: "some updated name"}
+
+      assert {:ok, %Sheep{} = sheep} = Animals.update_sheep(sheep, update_attrs)
+      assert sheep.age == "some updated age"
+      assert sheep.name == "some updated name"
+    end
+
+    test "update_sheep/2 with invalid data returns error changeset" do
+      sheep = sheep_fixture()
+      assert {:error, %Ecto.Changeset{}} = Animals.update_sheep(sheep, @invalid_attrs)
+      assert sheep == Animals.get_sheep!(sheep.id)
+    end
+
+    test "delete_sheep/1 deletes the sheep" do
+      sheep = sheep_fixture()
+      assert {:ok, %Sheep{}} = Animals.delete_sheep(sheep)
+      assert_raise Ecto.NoResultsError, fn -> Animals.get_sheep!(sheep.id) end
+    end
+
+    test "change_sheep/1 returns a sheep changeset" do
+      sheep = sheep_fixture()
+      assert %Ecto.Changeset{} = Animals.change_sheep(sheep)
+    end
+  end
 end

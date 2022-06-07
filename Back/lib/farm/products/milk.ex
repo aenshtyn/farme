@@ -7,14 +7,16 @@ defmodule Farm.Products.Milk do
     field :day, :date
     field :milking_time, :string
     field :volume, :float
-    belongs_to(:cow, Cow)
+    belongs_to :cow, Cow
+
     timestamps()
   end
 
   @doc false
   def changeset(milk, attrs) do
     milk
-    |> cast(attrs, [:day, :cow_id, :volume, :milking_time])
-    |> validate_required([:day, :volume, :cow_id, :milking_time])
+    |> cast(attrs, [:day, :volume, :milking_time])
+    |> validate_required([:day, :volume, :milking_time])
+    # |> unique_constraint(:day, )
   end
 end

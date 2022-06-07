@@ -40,4 +40,11 @@ defmodule FarmWeb.Api.CowController do
       send_resp(conn, :no_content, "")
     end
   end
+
+  # def total_number(conn, %{"id" => id}) do
+  #   cow = Animals.get_cow!(id)
+  #   Enum.Count(cow)
+
+  #   render(conn, "show.json", cow: cow)
+  # end
 end

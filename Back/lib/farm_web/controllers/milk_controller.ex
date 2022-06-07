@@ -3,6 +3,9 @@ defmodule FarmWeb.MilkController do
 
   alias Farm.Products
   alias Farm.Products.Milk
+  alias Farm.Animals.Cow
+  import Ecto.Query
+  # impor
 
   def index(conn, _params) do
     milks = Products.list_milks()
@@ -11,7 +14,9 @@ defmodule FarmWeb.MilkController do
 
   def new(conn, _params) do
     changeset = Products.change_milk(%Milk{})
-    render(conn, "new.html", changeset: changeset)
+    cow_query = from(c in Cow, select: {c.name, c.id})
+    all_cows = Farm.Repo.all(cow_query)
+    render(conn, "new.html", changeset: changeset, all_cows: all_cows)
   end
 
   def create(conn, %{"milk" => milk_params}) do
@@ -22,7 +27,9 @@ defmodule FarmWeb.MilkController do
         |> redirect(to: Routes.milk_path(conn, :show, milk))
 
       {:error, %Ecto.Changeset{} = changeset} ->
-        render(conn, "new.html", changeset: changeset)
+        cow_query = from(c in Cow, select: {c.name, c.id})
+        all_cows = Farm.Repo.all(cow_query)
+        render(conn, "new.html", changeset: changeset, all_cows: all_cows)
     end
   end
 

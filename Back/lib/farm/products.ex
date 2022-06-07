@@ -5,6 +5,7 @@ defmodule Farm.Products do
 
   import Ecto.Query, warn: false
   alias Farm.Repo
+  alias Farm.Animals.Cow
 
   alias Farm.Products.Milk
 
@@ -35,22 +36,28 @@ defmodule Farm.Products do
       ** (Ecto.NoResultsError)
 
   """
-  def get_milk!(id), do: Repo.get!(Milk, id)
+  def get_milk!(id) do
+    Milk
+    |> Repo.get!(id)
+    |> Repo.preload(:cows)
+  end
 
   @doc """
   Creates a milk.
 
   ## Examples
 
-      iex> create_milk(%{field: value})
-      {:ok, %Milk{}}
+  iex> create_milk(%{field: value})
+  {:ok, %Milk{}}
 
-      iex> create_milk(%{field: bad_value})
-      {:error, %Ecto.Changeset{}}
+  iex> create_milk(%{field: bad_value})
+  {:error, %Ecto.Changeset{}}
 
   """
-  def create_milk(attrs \\ %{}) do
-    %Milk{}
+  def create_milk(cow, attrs \\ %{}) do
+    cow
+    # |> Ecto.build_assoc(:milks)
+    |> Repo.preload(:cows)
     |> Milk.changeset(attrs)
     |> Repo.insert()
   end

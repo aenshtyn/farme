@@ -101,4 +101,100 @@ defmodule Farm.Animals do
   def change_cow(%Cow{} = cow, attrs \\ %{}) do
     Cow.changeset(cow, attrs)
   end
+
+  alias Farm.Animals.Sheep
+
+  @doc """
+  Returns the list of sheeps.
+
+  ## Examples
+
+      iex> list_sheeps()
+      [%Sheep{}, ...]
+
+  """
+  def list_sheeps do
+    Repo.all(Sheep)
+  end
+
+  @doc """
+  Gets a single sheep.
+
+  Raises `Ecto.NoResultsError` if the Sheep does not exist.
+
+  ## Examples
+
+      iex> get_sheep!(123)
+      %Sheep{}
+
+      iex> get_sheep!(456)
+      ** (Ecto.NoResultsError)
+
+  """
+  def get_sheep!(id), do: Repo.get!(Sheep, id)
+
+  @doc """
+  Creates a sheep.
+
+  ## Examples
+
+      iex> create_sheep(%{field: value})
+      {:ok, %Sheep{}}
+
+      iex> create_sheep(%{field: bad_value})
+      {:error, %Ecto.Changeset{}}
+
+  """
+  def create_sheep(attrs \\ %{}) do
+    %Sheep{}
+    |> Sheep.changeset(attrs)
+    |> Repo.insert()
+  end
+
+  @doc """
+  Updates a sheep.
+
+  ## Examples
+
+      iex> update_sheep(sheep, %{field: new_value})
+      {:ok, %Sheep{}}
+
+      iex> update_sheep(sheep, %{field: bad_value})
+      {:error, %Ecto.Changeset{}}
+
+  """
+  def update_sheep(%Sheep{} = sheep, attrs) do
+    sheep
+    |> Sheep.changeset(attrs)
+    |> Repo.update()
+  end
+
+  @doc """
+  Deletes a sheep.
+
+  ## Examples
+
+      iex> delete_sheep(sheep)
+      {:ok, %Sheep{}}
+
+      iex> delete_sheep(sheep)
+      {:error, %Ecto.Changeset{}}
+
+  """
+  def delete_sheep(%Sheep{} = sheep) do
+    Repo.delete(sheep)
+  end
+
+  @doc """
+  Returns an `%Ecto.Changeset{}` for tracking sheep changes.
+
+  ## Examples
+
+      iex> change_sheep(sheep)
+      %Ecto.Changeset{data: %Sheep{}}
+
+  """
+  def change_sheep(%Sheep{} = sheep, attrs \\ %{}) do
+    Sheep.changeset(sheep, attrs)
+  end
 end
