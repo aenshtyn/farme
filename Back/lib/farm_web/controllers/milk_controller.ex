@@ -35,7 +35,9 @@ defmodule FarmWeb.MilkController do
 
   def show(conn, %{"id" => id}) do
     milk = Products.get_milk!(id)
-    render(conn, "show.html", milk: milk)
+    cow_query = from(c in Cow, select: {c.name, c.id})
+    all_cows = Farm.Repo.all(cow_query)
+    render(conn, "show.html", milk: milk, all_cows: all_cows)
   end
 
   def edit(conn, %{"id" => id}) do

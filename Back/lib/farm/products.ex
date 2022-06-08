@@ -6,7 +6,6 @@ defmodule Farm.Products do
   import Ecto.Query, warn: false
   alias Farm.Repo
   alias Farm.Animals.Cow
-
   alias Farm.Products.Milk
 
   @doc """
@@ -18,8 +17,11 @@ defmodule Farm.Products do
       [%Milk{}, ...]
 
   """
-  def list_milks do
-    Repo.all(Milk)
+  def list_milks(cow) do
+    from(m in Milk, where: [cow_id: ^cow.id], order_by: [asc: :id])
+    |> Repo.all()
+
+    # Repo.all(Milk)
   end
 
   @doc """
@@ -30,17 +32,14 @@ defmodule Farm.Products do
   ## Examples
 
       iex> get_milk!(123)
-      %Milk{}
+      %Milk{}p[]
 
       iex> get_milk!(456)
       ** (Ecto.NoResultsError)
 
   """
-  def get_milk!(id) do
-    Milk
-    |> Repo.get!(id)
-    |> Repo.preload(:cows)
-  end
+
+  def get_milk!(cow, id), do: Repo.get_by!(Milk, cow_id: cow.id, id: id)
 
   @doc """
   Creates a milk.
@@ -56,8 +55,8 @@ defmodule Farm.Products do
   """
   def create_milk(cow, attrs \\ %{}) do
     cow
-    # |> Ecto.build_assoc(:milks)
-    |> Repo.preload(:cows)
+    # %Milk{}
+    |> Ecto.build_assoc(:milks)
     |> Milk.changeset(attrs)
     |> Repo.insert()
   end

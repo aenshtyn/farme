@@ -15,7 +15,8 @@ defmodule FarmWeb.Api.MilkView do
       id: milk.id,
       day: milk.day,
       volume: milk.volume,
-      milking_time: milk.milking_time
+      milking_time: milk.milking_time,
+      cow: milk.cow_name
     }
   end
 end
