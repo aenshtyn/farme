@@ -16,8 +16,7 @@ defmodule Farm.Products.Milk do
   def changeset(milk, attrs) do
     milk
     |> cast(attrs, [:day, :volume, :milking_time])
-    # |> cast_assoc( attrs, [:cow])
     |> validate_required([:day, :volume, :milking_time])
-    |> unique_constraint(:day, :milking_time)
+    # |> unique_constraint(:day, :milking_time)
   end
 end

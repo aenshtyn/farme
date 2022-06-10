@@ -17,11 +17,19 @@ defmodule Farm.Products do
       [%Milk{}, ...]
 
   """
-  def list_milks(cow) do
-    from(m in Milk, where: [cow_id: ^cow.id], order_by: [asc: :id])
-    |> Repo.all()
+  # def list_milks(cow) do
+  #   # from(m in Milk, where: [cow_id: ^cow.id], order_by: [asc: :id])
+  #   # |> Repo.all()
 
-    # Repo.all(Milk)
+  #   # Repo.all(Milk)
+  # end
+
+  def list_milks(cow) do
+    Milk
+    # |> Repo.all()
+    # |> Repo.preload :cow
+
+    Repo.all(Milk)
   end
 
   @doc """
@@ -53,13 +61,19 @@ defmodule Farm.Products do
   {:error, %Ecto.Changeset{}}
 
   """
-  def create_milk(cow, attrs \\ %{}) do
-    cow
-    # %Milk{}
-    |> Ecto.build_assoc(:milks)
+  def create_milk(attrs \\ %{}) do
+    %Milk{}
+    # |> Ecto.build_assoc(:milks)
     |> Milk.changeset(attrs)
     |> Repo.insert()
   end
+
+  # def create_milk(cow, attrs \\ %{}) do
+  #   cow
+  #   |> Ecto.build_assoc(:milks)
+  #   |> Milk.changeset(attrs)
+  #   |> Repo.insert()
+  # end
 
   @doc """
   Updates a milk.
@@ -107,4 +121,5 @@ defmodule Farm.Products do
   def change_milk(%Milk{} = milk, attrs \\ %{}) do
     Milk.changeset(milk, attrs)
   end
+
 end

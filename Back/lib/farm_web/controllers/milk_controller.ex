@@ -7,9 +7,9 @@ defmodule FarmWeb.MilkController do
   import Ecto.Query
   # impor
 
-  def index(conn, _params) do
-    milks = Products.list_milks()
-    render(conn, "index.html", milks: milks)
+  def index(conn, cow) do
+    milks = Products.list_milks(cow)
+    render(conn, "index.html", milks: milks, cow: cow)
   end
 
   def new(conn, _params) do

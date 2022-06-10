@@ -18,7 +18,14 @@ defmodule Farm.Animals do
 
   """
   def list_cows do
-    Repo.all(Cow)
+    Cow
+    |> Repo.all()
+    |> Repo.preload(:milks)
+    # Repo.all(Cow)
+  end
+
+  def preload(data) do
+    Repo.preload(data)
   end
 
   @doc """

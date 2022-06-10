@@ -1,5 +1,20 @@
 <template>
   <div class="container">
+
+    <div class="row">
+      <div class="col">
+
+      <form>
+      <div class="form-group"> <!-- Date input -->
+        <label class="control-label" for="date">Date</label>
+        <input class="form-control" id="date" name="date" placeholder="MM/DD/YYY" type="text"/>
+      </div>
+        <button class="btn btn-primary " name="submit" type="submit">Submit</button>
+      <div class="form-group"> <!-- Submit button -->
+      </div>
+     </form>
+    </div>
+      </div>
     <div class="row">
       <div class="col">
         <table class="table">

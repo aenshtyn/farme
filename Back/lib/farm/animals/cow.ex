@@ -4,11 +4,12 @@ defmodule Farm.Animals.Cow do
   import Ecto.Query
 
   schema "cows" do
-    field :breed, :string
-    field :dob, :date
-    field :name, :string
-    field :owner, :string
-    has_many :milks, Farm.Products.Milk
+    field(:breed, :string)
+    field(:dob, :date)
+    # field :age, :integer
+    field(:name, :string)
+    field(:owner, :string)
+    has_many(:milks, Farm.Products.Milk)
 
     timestamps()
   end
@@ -17,19 +18,21 @@ defmodule Farm.Animals.Cow do
   def changeset(cow, attrs) do
     cow
     |> cast(attrs, [:name, :dob, :breed, :owner])
+    |> cast_assoc(:milks, required: true)
     |> validate_required([:name, :dob, :breed, :owner])
-
-    # |> age_in_months()
+    # |> put_age_in_months
   end
 
-  def age_in_months(dob) do
-    (Date.utc_today().year - dob.year) * 12 + (Date.utc_today().month - dob.month)
-  end
-
-  def calculate_age() do
-  end
+  # def put_age_in_months(changeset) do
+  #   case changeset do
+  #     %Ecto.changeset{valid?: true, changes: %{dob: dob}}
+  #     ->
+  #       put_change(changeset, :age, (Date.utc_today().year - dob.year) * 12 + (Date.utc_today().month - dob.month))
+  #       changeset
+  #   end
+  # end
 
   def cow_query(queryable \\ __MODULE__) do
-    from( c in queryable, select: %{name: c.name, id: c.id})
+    from(c in queryable, select: %{name: c.name, id: c.id})
   end
 end

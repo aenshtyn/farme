@@ -6,9 +6,9 @@ defmodule FarmWeb.Api.MilkController do
 
   action_fallback FarmWeb.FallbackController
 
-  def index(conn, _params) do
-    milks = Products.list_milks()
-    render(conn, "index.json", milks: milks)
+  def index(conn, cow) do
+    milks = Products.list_milks(cow)
+    render(conn, "index.json", milks: milks, cow: cow)
   end
 
   def create(conn, %{"milk" => milk_params}) do
@@ -21,6 +21,26 @@ defmodule FarmWeb.Api.MilkController do
   end
 
   def show(conn, %{"id" => id}) do
+    milk = Products.get_milk!(id)
+    render(conn, "show.json", milk: milk)
+  end
+
+  def production_by_date(conn, %{"id" => id}) do
+    milk = Products.get_milk!(id)
+    render(conn, "show.json", milk: milk)
+  end
+
+  def production_by_animal_name(conn, %{"id" => id}) do
+    milk = Products.get_milk!(id)
+    render(conn, "show.json", milk: milk)
+  end
+
+  def production_by_animal_name(conn, %{"id" => id}) do
+    milk = Products.get_milk!(id)
+    render(conn, "show.json", milk: milk)
+  end
+
+  def production_by_milking_time(conn, %{"id" => id}) do
     milk = Products.get_milk!(id)
     render(conn, "show.json", milk: milk)
   end

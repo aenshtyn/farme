@@ -16,7 +16,8 @@ defmodule FarmWeb.Api.CowView do
       name: cow.name,
       dob: cow.dob,
       breed: cow.breed,
-      owner: cow.owner
+      owner: cow.owner,
+      # milks: 
     }
   end
 end
