@@ -5,6 +5,7 @@ defmodule Farm.Repo.Migrations.CreateCows do
     create table(:cows) do
       add :name, :string
       add :dob, :date
+      add :age, :integer
       add :breed, :string
       add :owner, :string
 

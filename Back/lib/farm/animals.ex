@@ -24,9 +24,9 @@ defmodule Farm.Animals do
     # Repo.all(Cow)
   end
 
-  def preload(data) do
-    Repo.preload(data)
-  end
+  # def preload(data) do
+  #   Repo.preload(data)
+  # end
 
   @doc """
   Gets a single cow.

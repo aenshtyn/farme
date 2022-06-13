@@ -32,6 +32,12 @@ defmodule Farm.Products do
     Repo.all(Milk)
   end
 
+  def list_milks() do
+    Repo.all(Milk)
+    Repo.preload :cow
+
+  end
+
   @doc """
   Gets a single milk.
 
@@ -47,7 +53,8 @@ defmodule Farm.Products do
 
   """
 
-  def get_milk!(cow, id), do: Repo.get_by!(Milk, cow_id: cow.id, id: id)
+  def get_milk!(params), do: Repo.get!(Milk, params)
+  # def get_milk!(cow, id), do: Repo.get_by!(Milk, cow_id: cow.id, id: id)
 
   @doc """
   Creates a milk.

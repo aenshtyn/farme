@@ -39,6 +39,9 @@ defmodule FarmWeb.Router do
     pipe_through :api
 
     resources "/calfs", CalfController
+    get "/milks/:name", MilkController, :production_by_animal_name
+    get "/milks/:milking_time", MilkController, :production_by_milking_time
+    get "/milks/:date", MilkController, :production_by_date
     resources "/milks", MilkController
     resources "/cows", CowController
     resources "/machinerys", MachineryController

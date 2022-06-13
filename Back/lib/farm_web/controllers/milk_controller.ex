@@ -24,7 +24,7 @@ defmodule FarmWeb.MilkController do
       {:ok, milk} ->
         conn
         |> put_flash(:info, "Milk created successfully.")
-        |> redirect(to: Routes.milk_path(conn, :show, milk))
+        |> redirect(to: Routes.milk_path(conn, :create, milk))
 
       {:error, %Ecto.Changeset{} = changeset} ->
         cow_query = from(c in Cow, select: {c.name, c.id})
