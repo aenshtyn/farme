@@ -19,6 +19,7 @@ defmodule FarmWeb.Api.CowView do
       owner: cow.owner,
       # weight: Enum.map(),
       milks: Enum.map(cow.milks, &render_milks(&1)),
+      events: Enum.map(cow.events, &render_events(&1)),
       # calvings: Enum.map(),
       # AI: Enum.map(),
     }
@@ -26,5 +27,9 @@ defmodule FarmWeb.Api.CowView do
 
   def render_milks(milks) do
     %{day: milks.day, schedule: milks.milking_time, volume: milks.volume }
+  end
+
+  def render_events(events) do
+    %{day: events.day, activity: events.activity, cost: events.cost }
   end
 end

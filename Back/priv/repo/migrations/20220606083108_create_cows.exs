@@ -11,5 +11,7 @@ defmodule Farm.Repo.Migrations.CreateCows do
 
       timestamps()
     end
+
+    create unique_index(:cows, [:name])
   end
 end

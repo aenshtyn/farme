@@ -21,6 +21,7 @@ defmodule Farm.Animals do
     Cow
     |> Repo.all()
     |> Repo.preload(:milks)
+    |> Repo.preload(:events)
     # Repo.all(Cow)
   end
 
@@ -42,7 +43,7 @@ defmodule Farm.Animals do
       ** (Ecto.NoResultsError)
 
   """
-  def get_cow!(id), do: Repo.get!(Cow, id)
+  def get_cow!(id), do: Repo.get!(Cow, id) |> Repo.preload(:milks)
 
   @doc """
   Creates a cow.

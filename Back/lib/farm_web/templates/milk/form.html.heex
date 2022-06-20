@@ -14,7 +14,7 @@
                                 <%= error_tag f, :volume %>
 
                                     <%= label f, :milking_time %>
-                                        <%= text_input f, :milking_time %>
+                                        <%= select f, :milking_time, ["Morning": "AM", "Evening": "PM"] %>
                                             <%= error_tag f, :milking_time %>
 
                                                 <%= label f, :cow %>

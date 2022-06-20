@@ -9,6 +9,7 @@ defmodule Farm.Animals.Cow do
     field(:age, :integer)
     field(:name, :string)
     field(:owner, :string)
+    has_many(:events, Farm.Events.Event)
     has_many(:milks, Farm.Products.Milk)
 
     timestamps()

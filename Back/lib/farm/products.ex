@@ -24,18 +24,17 @@ defmodule Farm.Products do
   #   # Repo.all(Milk)
   # end
 
+  # def list_milks(cow) do
+  #   Milk
+  #   # |> Repo.all()
+  #   # |> Repo.preload :cow
+
+  #   Repo.all(Milk)
+  # end
+
   def list_milks(cow) do
-    Milk
-    # |> Repo.all()
-    # |> Repo.preload :cow
-
     Repo.all(Milk)
-  end
-
-  def list_milks() do
-    Repo.all(Milk)
-    Repo.preload :cow
-
+    # Repo.preload(:cows)
   end
 
   @doc """
@@ -53,7 +52,8 @@ defmodule Farm.Products do
 
   """
 
-  def get_milk!(params), do: Repo.get!(Milk, params)
+  def get_milk!(day), do: Repo.get!(Milk, day)
+
   # def get_milk!(cow, id), do: Repo.get_by!(Milk, cow_id: cow.id, id: id)
 
   @doc """
@@ -76,8 +76,8 @@ defmodule Farm.Products do
   end
 
   # def create_milk(cow, attrs \\ %{}) do
-  #   cow
-  #   |> Ecto.build_assoc(:milks)
+  #   %Cow{}
+  #   |> Ecto.build_assoc(:milks, cow)
   #   |> Milk.changeset(attrs)
   #   |> Repo.insert()
   # end

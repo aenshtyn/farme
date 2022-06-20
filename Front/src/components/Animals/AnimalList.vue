@@ -10,6 +10,7 @@
               <th scope="col">Age</th>
               <th scope="col">Breed</th>
               <th scope="col">Owner</th>
+              <th scope="col">Milk</th>
               
              
             </tr>
@@ -19,9 +20,10 @@
             <tr v-for="item in cows" :key="item.id">
               <th scope="row"> {{ item.id }}</th>
               <th scope="row"> {{ item.name }}</th>
-              <th scope="row"> {{ item.dob }}</th>
+              <th scope="row"> {{ item.age }} Months</th>
               <th scope="row"> {{ item.breed }}</th>
               <th scope="row"> {{ item.owner }}</th>
+              <th scope="row"> {{ item.milks.volume }}</th>
               <!-- <th scope="row"> {{ item. }}</th> -->
               <!-- <td>John Doe</td>
               <td><input type="number"           

@@ -28,6 +28,7 @@ defmodule FarmWeb.Router do
     resources "/photos", PhotoController
     resources "/calfs", CalfController
     resources "/donkeys", DonkeyController
+    resources "/events", EventController
   end
 
   pipeline :api_authenticated do
@@ -39,10 +40,11 @@ defmodule FarmWeb.Router do
     pipe_through :api
 
     resources "/calfs", CalfController
-    get "/milks/:name", MilkController, :production_by_animal_name
-    get "/milks/:milking_time", MilkController, :production_by_milking_time
-    get "/milks/:date", MilkController, :production_by_date
+    # get "/milks/:name", MilkController, :production_by_animal_name
+    # get "/milks/:milking_time", MilkController, :production_by_milking_time
+    get "/milks/:day", MilkController, :production_by_date
     resources "/milks", MilkController
+    resources "/events", EventController
     resources "/cows", CowController
     resources "/machinerys", MachineryController
     resources "/medications", MedicationController

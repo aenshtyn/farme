@@ -25,19 +25,16 @@
               <th scope="col">Morning</th>
               <th scope="col">Afternoon</th>
               <th scope="col">Total</th>
-              <th scope="col">Action</th>
-              
-             
+              <th scope="col">Action</th>             
             </tr>
           </thead>
-
           <tbody>
-            <tr>
-              <th scope="row">1</th>
-              <td>John Doe</td>
-              <td><input type="number"></td>
-              <td><input type="number"></td>
-              <td>3</td>
+          <tr v-for="item in milks" :key="item.id">
+              <th scope="row"> {{ item.id }}</th>
+              <th scope="row"> {{ item.name }}</th>
+              <th scope="row"> <input type="number">{{ item.morning_milk }}</th>
+              <th scope="row"> <input type="number">{{ item.evening_milk }}</th>
+              <th scope="row"> {{ item.volume }}</th>
               <td><button type="button" class="btn btn-sm btn-primary" >Save</button></td>
             </tr>
           </tbody>
@@ -48,3 +45,24 @@
         <button type="button" class="btn btn-primary">Save</button>
   </div>
 </template> 
+
+<script>
+
+import useMilks from "../services/MilkDataService";
+import { onMounted } from "vue";
+import { ref } from 'vue';
+export default {
+   setup() {
+    const selected = ref();
+    const { milks, getMilks} = useMilks();
+
+    onMounted(getMilks);
+
+    return {
+  
+      milks,
+      selected,
+    };
+  },
+};
+</script>

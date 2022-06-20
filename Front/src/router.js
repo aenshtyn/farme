@@ -5,56 +5,63 @@ const routes = [{
         alias: "/dashboard",
         name: "dashboard",
         component: () =>
-            import ("./components/Dashboard")
+            import ("./components/Dashboard"),
     },
     {
         path: "/production",
         alias: "/production",
         name: "production",
         component: () =>
-            import ("./components/Production")
+            import ("./components/Production"),
+    },
+    {
+        path: "/producti",
+        alias: "/producti",
+        name: "producti",
+        component: () =>
+            import ("./components/Producti"),
     },
     {
         path: "/inventory",
         alias: "/inventory",
         name: "inventory",
         component: () =>
-            import ("./components/Inventory")
+            import ("./components/Inventory"),
     },
     {
         path: "/hr",
         alias: "/hr",
         name: "hr",
         component: () =>
-            import ("./components/Hr")
+            import ("./components/Hr"),
     },
     {
         path: "/products",
         alias: "/products",
         name: "products",
         component: () =>
-            import ("./components/Products")
+            import ("./components/Products"),
     },
     {
         path: "/animals/cows",
         alias: "/cows",
         name: "cows",
         component: () =>
-            import ("./components/Animals/AnimalList.vue")
+            import ("./components/Animals/AnimalList.vue"),
     },
     {
-        path: "/animals/cows/add",
-        alias: "/cows/add",
+        path: "/animals/add",
+        alias: "/add",
         name: "add-cows",
         component: () =>
-            import ("./components/Animals/AnimalRegistration.vue")
+            import ("./components/Animals/AnimalRegistration.vue"),
     },
     {
         path: "/signup",
         alias: "/signup",
         name: "signup",
         component: () =>
-            import ("./components/registration/Register.vue")
+            import ("./components/registration/Register.vue"),
     },
     {
         path: "/profile",
@@ -69,11 +76,8 @@ const routes = [{
         alias: "/login",
         name: "login",
         component: () =>
-            import ("./components/registration/Login.vue")
+            import ("./components/registration/Login.vue"),
     },
-
-
-
 ];
 
 const router = createRouter({

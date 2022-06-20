@@ -15,9 +15,13 @@ defmodule Farm.Products.Milk do
   @doc false
   def changeset(milk, attrs) do
     milk
-    |> cast(attrs, [:day, :volume, :milking_time])
-    # |> cast_assoc(:cow_id)
-    |> validate_required([:day, :volume, :milking_time])
-    # |> unique_constraint(:day, :milking_time)
+    |> cast(attrs, [:day, :volume, :cow_id, :milking_time])
+    |> validate_required([:day, :volume, :milking_time, :cow_id])
+    |> unique_constraint(:day)
+  end
+
+  def milk_query() do
+    # from m in milks,
+
   end
 end

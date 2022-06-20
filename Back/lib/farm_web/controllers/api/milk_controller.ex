@@ -20,25 +20,25 @@ defmodule FarmWeb.Api.MilkController do
     end
   end
 
-  def show(conn, %{"id" => id}) do
-    milk = Products.get_milk!(id)
-    render(conn, "show.json", milk: milk)
-  end
+  # def show(conn, %{"id" => id}) do
+  #   milk = Products.get_milk!(id)
+  #   render(conn, "show.json", milk: milk)
+  # end
 
   def production_by_date(conn, %{"day" => day}) do
     milk = Products.get_milk!(day)
     render(conn, "show.json", milk: milk)
   end
 
-  def production_by_animal_name(conn, %{"name" => name}) do
-    milk = Products.get_milk!(name)
-    render(conn, "show.json", milk: milk)
-  end
+  # def production_by_animal_name(conn, %{"name" => name}) do
+  #   milk = Products.get_milk!(name)
+  #   render(conn, "show.json", milk: milk)
+  # end
 
-  def production_by_milking_time(conn, %{"milking_time" => milking_time}) do
-    milk = Products.get_milk!(milking_time)
-    render(conn, "show.json", milk: milk)
-  end
+  # def production_by_milking_time(conn, %{"milking_time" => milking_time}) do
+  #   milk = Products.get_milk!(milking_time)
+  #   render(conn, "show.json", milk: milk)
+  # end
 
   def update(conn, %{"id" => id, "milk" => milk_params}) do
     milk = Products.get_milk!(id)

@@ -65,7 +65,7 @@
             style="height: 400px; margin-bottom: 10px; border-radius: 10px"
           >
             <div class="card-body">
-<Chart2/>
+<Chart3/>
               <!-- <div class="row">
                 <div class="container">
                   <h6>Name</h6>
@@ -97,12 +97,12 @@
 </template>
 <script>
 import Chart1 from "./Charts/Chart1.vue";
-import Chart2 from "./Charts/Chart2.vue";
+import Chart3 from "./Charts/Chart3.vue";
 
 export default {
   components: {
     Chart1,
-    Chart2,
+    Chart3,
   },
 };
 </script>

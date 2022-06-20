@@ -5,7 +5,6 @@ defmodule FarmWeb.MilkController do
   alias Farm.Products.Milk
   alias Farm.Animals.Cow
   import Ecto.Query
-  # impor
 
   def index(conn, cow) do
     milks = Products.list_milks(cow)
@@ -24,17 +23,22 @@ defmodule FarmWeb.MilkController do
       {:ok, milk} ->
         conn
         |> put_flash(:info, "Milk created successfully.")
-        |> redirect(to: Routes.milk_path(conn, :create, milk))
+        |> redirect(to: Routes.milk_path(conn, :show, milk))
 
       {:error, %Ecto.Changeset{} = changeset} ->
-        cow_query = from(c in Cow, select: {c.name, c.id})
-        all_cows = Farm.Repo.all(cow_query)
-        render(conn, "new.html", changeset: changeset, all_cows: all_cows)
+        render(conn, "new.html", changeset: changeset)
     end
   end
 
   def show(conn, %{"id" => id}) do
     milk = Products.get_milk!(id)
+    cow_query = from(c in Cow, select: {c.name, c.id})
+    all_cows = Farm.Repo.all(cow_query)
+    render(conn, "show.html", milk: milk, all_cows: all_cows)
+  end
+
+  def show_by_date(conn, %{"day" => day}) do
+    milk = Products.get_milk!(day)
     cow_query = from(c in Cow, select: {c.name, c.id})
     all_cows = Farm.Repo.all(cow_query)
     render(conn, "show.html", milk: milk, all_cows: all_cows)
