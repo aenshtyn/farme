@@ -52,7 +52,7 @@ defmodule Farm.Products do
 
   """
 
-  def get_milk!(day), do: Repo.get!(Milk, day)
+  def get_milk!(cow_id), do: Repo.get!(Milk, cow_id)
 
   # def get_milk!(cow, id), do: Repo.get_by!(Milk, cow_id: cow.id, id: id)
 

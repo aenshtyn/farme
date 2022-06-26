@@ -10,7 +10,6 @@
               <th scope="col">Age</th>
               <th scope="col">Breed</th>
               <th scope="col">Owner</th>
-              <th scope="col">Milk</th>
               
              
             </tr>
@@ -23,7 +22,7 @@
               <th scope="row"> {{ item.age }} Months</th>
               <th scope="row"> {{ item.breed }}</th>
               <th scope="row"> {{ item.owner }}</th>
-              <th scope="row"> {{ item.milks.volume }}</th>
+
               <!-- <th scope="row"> {{ item. }}</th> -->
               <!-- <td>John Doe</td>
               <td><input type="number"           
@@ -34,7 +33,7 @@
               placeholder="Enter milk volume..."></td>
               <td><input type="number"></td>
               <td>3</td> -->
-              <td><button type="button" class="btn btn-sm btn-primary" >Save</button></td>
+
             </tr>
           </tbody>
         </table>

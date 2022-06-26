@@ -13,6 +13,7 @@
 
 <script>
 import { ref } from 'vue'
+// import { Bar } from 'vue-chartjs'
 import Vue3ChartJs from '@j-t-mcc/vue3-chartjs'
 
 export default {
@@ -25,7 +26,7 @@ export default {
 
     const doughnutChart = {
       id: 'doughnut',
-      type: 'doughnut',
+      type: 'line',
       data: {
         labels: ['VueJs', 'EmberJs', 'ReactJs', 'AngularJs'],
         datasets: [
@@ -42,26 +43,9 @@ export default {
       }
     }
 
-    const updateChart = () => {
-      doughnutChart.data.labels = ['Cats', 'Dogs', 'Hamsters', 'Dragons']
-      doughnutChart.data.datasets = [
-        {
-          backgroundColor: [
-            '#333333',
-            '#E46651',
-            '#00D8FF',
-            '#DD1B16'
-          ],
-          data: [100, 20, 860, 20]
-        }
-      ]
-
-      chartRef.value.update()
-    }
 
     return {
       doughnutChart,
-      updateChart,
       chartRef
     }
   },

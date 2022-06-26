@@ -32,8 +32,8 @@
           <tr v-for="item in milks" :key="item.id">
               <th scope="row"> {{ item.id }}</th>
               <th scope="row"> {{ item.name }}</th>
-              <th scope="row"> <input type="number">{{ item.morning_milk }}</th>
-              <th scope="row"> <input type="number">{{ item.evening_milk }}</th>
+              <th scope="row"> <input type="number">{{ item.volume }}</th>
+              <th scope="row"> <input type="number">{{ item.volume }}</th>
               <th scope="row"> {{ item.volume }}</th>
               <td><button type="button" class="btn btn-sm btn-primary" >Save</button></td>
             </tr>
