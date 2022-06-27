@@ -13,10 +13,10 @@
 
 window.csrf_token = "{{ csrf_token() }}"
 import Nav from "./components/Nav/Nav";
-// import SideNav from "./components/Nav/SideNav";
+import SideNav from "./components/Nav/SideNav";
 export default {
   components: {
-    // SideNav,
+    SideNav,
      Nav,
      }
 };    

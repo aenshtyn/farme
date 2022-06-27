@@ -6,11 +6,12 @@ defmodule Farm.Repo.Migrations.CreatePaddocks do
       add :number, :integer
       add :size, :float
       add :description, :text
-      add :owner_id, references(:patrons, on_delete: :nothing)
+      # add :owner_id, references(:patrons, on_delete: :nothing)
 
       timestamps()
     end
 
-    create index(:paddocks, [:owner_id])
+    # create index(:paddocks, [:owner_id])
+    create index(:paddocks, [:number])
   end
 end

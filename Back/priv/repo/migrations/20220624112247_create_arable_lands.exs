@@ -6,11 +6,12 @@ defmodule Farm.Repo.Migrations.CreateArableLands do
       add :number, :integer
       add :size, :float
       add :description, :text
-      add :owner_id, references(:patrons, on_delete: :nothing)
+      # add :owner_id, references(:patrons, on_delete: :nothing)
 
       timestamps()
     end
 
-    create index(:arable_lands, [:owner_id])
+    # create index(:arable_lands, [:owner_id])
+    create index(:arable_lands, [:number])
   end
 end

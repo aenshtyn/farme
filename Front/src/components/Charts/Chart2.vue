@@ -1,69 +1,33 @@
 <template>
-  <div style="height:400px;width: auto;display: flex;flex-direction:column;">
-    <vue3-chart-js
-        :id="doughnutChart.id"
-        ref="chartRef"
-        :type="doughnutChart.type"
-        :data="doughnutChart.data"
-    ></vue3-chart-js>
-
-    <button @click="updateChart">Update Chart</button>
+  <div class="container">
+    <Bar v-if="loaded" :chart-data="chartData" />
   </div>
 </template>
 
 <script>
-import { ref } from 'vue'
-import Vue3ChartJs from '@j-t-mcc/vue3-chartjs'
+import { Bar } from 'vue-chartjs'
+// import { Chart as ChartJS, Title, Tooltip, Legend, BarElement, CategoryScale, LinearScale } from 'chart.js'
+
+// ChartJS.register(Title, Tooltip, Legend, BarElement, CategoryScale, LinearScale)
 
 export default {
-  name: 'App',
-  components: {
-    Vue3ChartJs,
-  },
-  setup () {
-    const chartRef = ref(null)
+  name: 'BarChart',
+  components: { Bar },
+  data: () => ({
+    loaded: false,
+    chartData: null
+  }),
+  async mounted () {
+    this.loaded = false
 
-    const doughnutChart = {
-      id: 'doughnut',
-      type: 'line',
-      data: {
-        labels: ['VueJs', 'EmberJs', 'ReactJs', 'AngularJs'],
-        datasets: [
-          {
-            backgroundColor: [
-              '#41B883',
-              '#E46651',
-              '#00D8FF',
-              '#DD1B16'
-            ],
-            data: [40, 20, 100, 1]
-          }
-        ]
-      }
+    try {
+      const { userlist } = await fetch('/api/userlist')
+      this.chartdata = userlist
+
+      this.loaded = true
+    } catch (e) {
+      console.error(e)
     }
-
-    const updateChart = () => {
-      doughnutChart.data.labels = ['Cats', 'Dogs', 'Hamsters', 'Dragons']
-      doughnutChart.data.datasets = [
-        {
-          backgroundColor: [
-            '#333333',
-            '#E46651',
-            '#00D8FF',
-            '#DD1B16'
-          ],
-          data: [100, 20, 860, 20]
-        }
-      ]
-
-      chartRef.value.update()
-    }
-
-    return {
-      doughnutChart,
-      updateChart,
-      chartRef
-    }
-  },
+  }
 }
 </script>
