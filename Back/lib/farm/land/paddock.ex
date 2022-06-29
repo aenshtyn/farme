@@ -2,11 +2,13 @@ defmodule Farm.Land.Paddock do
   use Ecto.Schema
   import Ecto.Changeset
 
+  alias Farm.HR.Patron
+
   schema "paddocks" do
     field :description, :string
     field :number, :integer
     field :size, :float
-    field :owner_id, :id
+    belongs_to :patron, Patron
 
     timestamps()
   end

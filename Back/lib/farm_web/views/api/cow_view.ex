@@ -16,7 +16,7 @@ defmodule FarmWeb.Api.CowView do
       name: cow.name,
       age: cow.age,
       breed: cow.breed,
-      owner: cow.owner,
+      owner: cow.patron_id,
       # weight: Enum.map(),
       milks: Enum.map(cow.milks, &render_milks(&1)),
       events: Enum.map(cow.events, &render_events(&1)),

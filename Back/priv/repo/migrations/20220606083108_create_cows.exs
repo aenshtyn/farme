@@ -7,11 +7,11 @@ defmodule Farm.Repo.Migrations.CreateCows do
       add :dob, :date
       add :age, :integer
       add :breed, :string
-      add :owner, :string
+      add :patron_id, references(:patrons, on_delete: :nothing)
 
       timestamps()
     end
 
-    create unique_index(:cows, [:name])
+    create unique_index(:cows, [:patron_id])
   end
 end

@@ -29,6 +29,12 @@ defmodule FarmWeb.Router do
     resources "/calfs", CalfController
     resources "/donkeys", DonkeyController
     resources "/events", EventController
+    resources "/workers", WorkerController
+    resources "/duties", DutyController
+    resources "/roles", RoleController
+    resources "/patrons", PatronController
+    resources "/arable", ArableController
+    resources "/paddocks", PaddockController
   end
 
   pipeline :api_authenticated do
@@ -48,7 +54,13 @@ defmodule FarmWeb.Router do
     resources "/cows", CowController
     resources "/machinerys", MachineryController
     resources "/medications", MedicationController
+    resources "/workers", WorkerController
     resources "/donkeys", DonkeyController
+    resources "/duties", DutyController
+    resources "/roles", RoleController
+    resources "/patrons", PatronController
+    resources "/arable", ArableController
+    resources "/paddocks", PaddockController
     post "/register", UserRegistrationController, :register
     post "/sign_in", SessionController, :create
     post "/sign_out", SessionController, :delete

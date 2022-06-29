@@ -1,21 +1,25 @@
 defmodule FarmWeb.PatronController do
   use FarmWeb, :controller
 
-  alias Farm.Owner
-  alias Farm.Owner.Patron
+  alias Farm.HR
+  alias Farm.HR.Patron
+  alias Farm.HR.Role
+  import Ecto.Query
 
-  def index(conn, _params) do
-    patrons = Owner.list_patrons()
-    render(conn, "index.html", patrons: patrons)
+  def index(conn, role) do
+    patrons = HR.list_patrons(role)
+    render(conn, "index.html", patrons: patrons, role: role)
   end
 
   def new(conn, _params) do
-    changeset = Owner.change_patron(%Patron{})
-    render(conn, "new.html", changeset: changeset)
+    changeset = HR.change_patron(%Patron{})
+    role_query = from(r in Role, select: {r.name, r.id})
+    all_roles = Farm.Repo.all(role_query)
+    render(conn, "new.html", changeset: changeset, all_roles: all_roles)
   end
 
   def create(conn, %{"patron" => patron_params}) do
-    case Owner.create_patron(patron_params) do
+    case HR.create_patron(patron_params) do
       {:ok, patron} ->
         conn
         |> put_flash(:info, "Patron created successfully.")
@@ -27,20 +31,22 @@ defmodule FarmWeb.PatronController do
   end
 
   def show(conn, %{"id" => id}) do
-    patron = Owner.get_patron!(id)
-    render(conn, "show.html", patron: patron)
+    patron = HR.get_patron!(id)
+    role_query = from(r in Role, select: {r.name, r.id})
+    all_roles = Farm.Repo.all(role_query)
+    render(conn, "show.html", patron: patron, all_roles: all_roles)
   end
 
   def edit(conn, %{"id" => id}) do
-    patron = Owner.get_patron!(id)
-    changeset = Owner.change_patron(patron)
+    patron = HR.get_patron!(id)
+    changeset = HR.change_patron(patron)
     render(conn, "edit.html", patron: patron, changeset: changeset)
   end
 
   def update(conn, %{"id" => id, "patron" => patron_params}) do
-    patron = Owner.get_patron!(id)
+    patron = HR.get_patron!(id)
 
-    case Owner.update_patron(patron, patron_params) do
+    case HR.update_patron(patron, patron_params) do
       {:ok, patron} ->
         conn
         |> put_flash(:info, "Patron updated successfully.")
@@ -52,8 +58,8 @@ defmodule FarmWeb.PatronController do
   end
 
   def delete(conn, %{"id" => id}) do
-    patron = Owner.get_patron!(id)
-    {:ok, _patron} = Owner.delete_patron(patron)
+    patron = HR.get_patron!(id)
+    {:ok, _patron} = HR.delete_patron(patron)
 
     conn
     |> put_flash(:info, "Patron deleted successfully.")

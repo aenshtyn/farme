@@ -118,4 +118,62 @@ defmodule Farm.LandTest do
       assert %Ecto.Changeset{} = Land.change_arable_land(arable_land)
     end
   end
+
+  describe "arable" do
+    alias Farm.Land.Arable
+
+    import Farm.LandFixtures
+
+    @invalid_attrs %{description: nil, number: nil, size: nil}
+
+    test "list_arable/0 returns all arable" do
+      arable = arable_fixture()
+      assert Land.list_arable() == [arable]
+    end
+
+    test "get_arable!/1 returns the arable with given id" do
+      arable = arable_fixture()
+      assert Land.get_arable!(arable.id) == arable
+    end
+
+    test "create_arable/1 with valid data creates a arable" do
+      valid_attrs = %{description: "some description", number: 42, size: 120.5}
+
+      assert {:ok, %Arable{} = arable} = Land.create_arable(valid_attrs)
+      assert arable.description == "some description"
+      assert arable.number == 42
+      assert arable.size == 120.5
+    end
+
+    test "create_arable/1 with invalid data returns error changeset" do
+      assert {:error, %Ecto.Changeset{}} = Land.create_arable(@invalid_attrs)
+    end
+
+    test "update_arable/2 with valid data updates the arable" do
+      arable = arable_fixture()
+      update_attrs = %{description: "some updated description", number: 43, size: 456.7}
+
+      assert {:ok, %Arable{} = arable} = Land.update_arable(arable, update_attrs)
+      assert arable.description == "some updated description"
+      assert arable.number == 43
+      assert arable.size == 456.7
+    end
+
+    test "update_arable/2 with invalid data returns error changeset" do
+      arable = arable_fixture()
+      assert {:error, %Ecto.Changeset{}} = Land.update_arable(arable, @invalid_attrs)
+      assert arable == Land.get_arable!(arable.id)
+    end
+
+    test "delete_arable/1 deletes the arable" do
+      arable = arable_fixture()
+      assert {:ok, %Arable{}} = Land.delete_arable(arable)
+      assert_raise Ecto.NoResultsError, fn -> Land.get_arable!(arable.id) end
+    end
+
+    test "change_arable/1 returns a arable changeset" do
+      arable = arable_fixture()
+      assert %Ecto.Changeset{} = Land.change_arable(arable)
+    end
+  end
 end

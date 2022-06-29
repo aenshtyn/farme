@@ -1,11 +1,11 @@
 defmodule FarmWeb.PatronControllerTest do
   use FarmWeb.ConnCase
 
-  import Farm.OwnerFixtures
+  import Farm.HRFixtures
 
-  @create_attrs %{name: "some name", phone_number: 42}
-  @update_attrs %{name: "some updated name", phone_number: 43}
-  @invalid_attrs %{name: nil, phone_number: nil}
+  @create_attrs %{address: "some address", name: "some name", phone_number: 42}
+  @update_attrs %{address: "some updated address", name: "some updated name", phone_number: 43}
+  @invalid_attrs %{address: nil, name: nil, phone_number: nil}
 
   describe "index" do
     test "lists all patrons", %{conn: conn} do
@@ -55,7 +55,7 @@ defmodule FarmWeb.PatronControllerTest do
       assert redirected_to(conn) == Routes.patron_path(conn, :show, patron)
 
       conn = get(conn, Routes.patron_path(conn, :show, patron))
-      assert html_response(conn, 200) =~ "some updated name"
+      assert html_response(conn, 200) =~ "some updated address"
     end
 
     test "renders errors when data is invalid", %{conn: conn, patron: patron} do

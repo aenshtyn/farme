@@ -6,9 +6,9 @@ defmodule FarmWeb.Api.CowController do
 
   action_fallback FarmWeb.FallbackController
 
-  def index(conn, _params) do
-    cows = Animals.list_cows()
-    render(conn, "index.json", cows: cows)
+  def index(conn, patron) do
+    cows = Animals.list_cows(patron)
+    render(conn, "index.json", cows: cows, patron: patron)
   end
 
   def create(conn, %{"cow" => cow_params}) do

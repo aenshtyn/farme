@@ -51,4 +51,20 @@ defmodule Farm.LandFixtures do
 
     arable_land
   end
+
+  @doc """
+  Generate a arable.
+  """
+  def arable_fixture(attrs \\ %{}) do
+    {:ok, arable} =
+      attrs
+      |> Enum.into(%{
+        description: "some description",
+        number: 42,
+        size: 120.5
+      })
+      |> Farm.Land.create_arable()
+
+    arable
+  end
 end

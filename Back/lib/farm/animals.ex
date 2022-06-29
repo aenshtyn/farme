@@ -7,6 +7,7 @@ defmodule Farm.Animals do
   alias Farm.Repo
 
   alias Farm.Animals.Cow
+  alias Farm.HR.Patron
 
   @doc """
   Returns the list of cows.
@@ -17,7 +18,7 @@ defmodule Farm.Animals do
       [%Cow{}, ...]
 
   """
-  def list_cows do
+  def list_cows(patron) do
     Cow
     |> Repo.all()
     |> Repo.preload(:milks)

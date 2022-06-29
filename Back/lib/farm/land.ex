@@ -102,99 +102,99 @@ defmodule Farm.Land do
     Paddock.changeset(paddock, attrs)
   end
 
-  alias Farm.Land.Arable_land
+  alias Farm.Land.Arable
 
   @doc """
-  Returns the list of arable_lands.
+  Returns the list of arable.
 
   ## Examples
 
-      iex> list_arable_lands()
-      [%Arable_land{}, ...]
+      iex> list_arable()
+      [%Arable{}, ...]
 
   """
-  def list_arable_lands do
-    Repo.all(Arable_land)
+  def list_arable do
+    Repo.all(Arable)
   end
 
   @doc """
-  Gets a single arable_land.
+  Gets a single arable.
 
-  Raises `Ecto.NoResultsError` if the Arable land does not exist.
+  Raises `Ecto.NoResultsError` if the Arable does not exist.
 
   ## Examples
 
-      iex> get_arable_land!(123)
-      %Arable_land{}
+      iex> get_arable!(123)
+      %Arable{}
 
-      iex> get_arable_land!(456)
+      iex> get_arable!(456)
       ** (Ecto.NoResultsError)
 
   """
-  def get_arable_land!(id), do: Repo.get!(Arable_land, id)
+  def get_arable!(id), do: Repo.get!(Arable, id)
 
   @doc """
-  Creates a arable_land.
+  Creates a arable.
 
   ## Examples
 
-      iex> create_arable_land(%{field: value})
-      {:ok, %Arable_land{}}
+      iex> create_arable(%{field: value})
+      {:ok, %Arable{}}
 
-      iex> create_arable_land(%{field: bad_value})
+      iex> create_arable(%{field: bad_value})
       {:error, %Ecto.Changeset{}}
 
   """
-  def create_arable_land(attrs \\ %{}) do
-    %Arable_land{}
-    |> Arable_land.changeset(attrs)
+  def create_arable(attrs \\ %{}) do
+    %Arable{}
+    |> Arable.changeset(attrs)
     |> Repo.insert()
   end
 
   @doc """
-  Updates a arable_land.
+  Updates a arable.
 
   ## Examples
 
-      iex> update_arable_land(arable_land, %{field: new_value})
-      {:ok, %Arable_land{}}
+      iex> update_arable(arable, %{field: new_value})
+      {:ok, %Arable{}}
 
-      iex> update_arable_land(arable_land, %{field: bad_value})
+      iex> update_arable(arable, %{field: bad_value})
       {:error, %Ecto.Changeset{}}
 
   """
-  def update_arable_land(%Arable_land{} = arable_land, attrs) do
-    arable_land
-    |> Arable_land.changeset(attrs)
+  def update_arable(%Arable{} = arable, attrs) do
+    arable
+    |> Arable.changeset(attrs)
     |> Repo.update()
   end
 
   @doc """
-  Deletes a arable_land.
+  Deletes a arable.
 
   ## Examples
 
-      iex> delete_arable_land(arable_land)
-      {:ok, %Arable_land{}}
+      iex> delete_arable(arable)
+      {:ok, %Arable{}}
 
-      iex> delete_arable_land(arable_land)
+      iex> delete_arable(arable)
       {:error, %Ecto.Changeset{}}
 
   """
-  def delete_arable_land(%Arable_land{} = arable_land) do
-    Repo.delete(arable_land)
+  def delete_arable(%Arable{} = arable) do
+    Repo.delete(arable)
   end
 
   @doc """
-  Returns an `%Ecto.Changeset{}` for tracking arable_land changes.
+  Returns an `%Ecto.Changeset{}` for tracking arable changes.
 
   ## Examples
 
-      iex> change_arable_land(arable_land)
-      %Ecto.Changeset{data: %Arable_land{}}
+      iex> change_arable(arable)
+      %Ecto.Changeset{data: %Arable{}}
 
   """
-  def change_arable_land(%Arable_land{} = arable_land, attrs \\ %{}) do
-    Arable_land.changeset(arable_land, attrs)
+  def change_arable(%Arable{} = arable, attrs \\ %{}) do
+    Arable.changeset(arable, attrs)
   end
 end

@@ -3,15 +3,19 @@ defmodule FarmWeb.CowController do
 
   alias Farm.Animals
   alias Farm.Animals.Cow
+  alias Farm.HR.Patron
+  import Ecto.Query
 
-  def index(conn, _params) do
-    cows = Animals.list_cows()
-    render(conn, "index.html", cows: cows)
+  def index(conn, patron) do
+    cows = Animals.list_cows(patron)
+    render(conn, "index.html", cows: cows, patron: patron)
   end
 
   def new(conn, _params) do
     changeset = Animals.change_cow(%Cow{})
-    render(conn, "new.html", changeset: changeset)
+    patron_query = from(p in Patron, select: {p.name, p.id})
+    all_patrons = Farm.Repo.all(patron_query)
+    render(conn, "new.html", changeset: changeset, all_patrons: all_patrons)
   end
 
   def create(conn, %{"cow" => cow_params}) do
