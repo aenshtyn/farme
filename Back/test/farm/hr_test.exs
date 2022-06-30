@@ -21,7 +21,13 @@ defmodule Farm.HRTest do
     end
 
     test "create_worker/1 with valid data creates a worker" do
-      valid_attrs = %{address: "some address", dob: ~N[2022-06-27 08:30:00], name: "some name", phone_number: 42, report_date: ~N[2022-06-27 08:30:00]}
+      valid_attrs = %{
+        address: "some address",
+        dob: ~N[2022-06-27 08:30:00],
+        name: "some name",
+        phone_number: 42,
+        report_date: ~N[2022-06-27 08:30:00]
+      }
 
       assert {:ok, %Worker{} = worker} = HR.create_worker(valid_attrs)
       assert worker.address == "some address"
@@ -37,7 +43,14 @@ defmodule Farm.HRTest do
 
     test "update_worker/2 with valid data updates the worker" do
       worker = worker_fixture()
-      update_attrs = %{address: "some updated address", dob: ~N[2022-06-28 08:30:00], name: "some updated name", phone_number: 43, report_date: ~N[2022-06-28 08:30:00]}
+
+      update_attrs = %{
+        address: "some updated address",
+        dob: ~N[2022-06-28 08:30:00],
+        name: "some updated name",
+        phone_number: 43,
+        report_date: ~N[2022-06-28 08:30:00]
+      }
 
       assert {:ok, %Worker{} = worker} = HR.update_worker(worker, update_attrs)
       assert worker.address == "some updated address"
@@ -97,7 +110,12 @@ defmodule Farm.HRTest do
 
     test "update_patron/2 with valid data updates the patron" do
       patron = patron_fixture()
-      update_attrs = %{address: "some updated address", name: "some updated name", phone_number: 43}
+
+      update_attrs = %{
+        address: "some updated address",
+        name: "some updated name",
+        phone_number: 43
+      }
 
       assert {:ok, %Patron{} = patron} = HR.update_patron(patron, update_attrs)
       assert patron.address == "some updated address"
@@ -195,7 +213,11 @@ defmodule Farm.HRTest do
     end
 
     test "create_duty/1 with valid data creates a duty" do
-      valid_attrs = %{day: ~N[2022-06-27 08:35:00], description: "some description", name: "some name"}
+      valid_attrs = %{
+        day: ~N[2022-06-27 08:35:00],
+        description: "some description",
+        name: "some name"
+      }
 
       assert {:ok, %Duty{} = duty} = HR.create_duty(valid_attrs)
       assert duty.day == ~N[2022-06-27 08:35:00]
@@ -209,7 +231,12 @@ defmodule Farm.HRTest do
 
     test "update_duty/2 with valid data updates the duty" do
       duty = duty_fixture()
-      update_attrs = %{day: ~N[2022-06-28 08:35:00], description: "some updated description", name: "some updated name"}
+
+      update_attrs = %{
+        day: ~N[2022-06-28 08:35:00],
+        description: "some updated description",
+        name: "some updated name"
+      }
 
       assert {:ok, %Duty{} = duty} = HR.update_duty(duty, update_attrs)
       assert duty.day == ~N[2022-06-28 08:35:00]
@@ -253,7 +280,13 @@ defmodule Farm.HRTest do
     end
 
     test "create_worker/1 with valid data creates a worker" do
-      valid_attrs = %{adress: "some adress", dob: ~N[2022-06-27 08:46:00], name: "some name", phone_number: 42, report_date: ~N[2022-06-27 08:46:00]}
+      valid_attrs = %{
+        adress: "some adress",
+        dob: ~N[2022-06-27 08:46:00],
+        name: "some name",
+        phone_number: 42,
+        report_date: ~N[2022-06-27 08:46:00]
+      }
 
       assert {:ok, %Worker{} = worker} = HR.create_worker(valid_attrs)
       assert worker.adress == "some adress"
@@ -269,7 +302,14 @@ defmodule Farm.HRTest do
 
     test "update_worker/2 with valid data updates the worker" do
       worker = worker_fixture()
-      update_attrs = %{adress: "some updated adress", dob: ~N[2022-06-28 08:46:00], name: "some updated name", phone_number: 43, report_date: ~N[2022-06-28 08:46:00]}
+
+      update_attrs = %{
+        adress: "some updated adress",
+        dob: ~N[2022-06-28 08:46:00],
+        name: "some updated name",
+        phone_number: 43,
+        report_date: ~N[2022-06-28 08:46:00]
+      }
 
       assert {:ok, %Worker{} = worker} = HR.update_worker(worker, update_attrs)
       assert worker.adress == "some updated adress"
@@ -315,7 +355,11 @@ defmodule Farm.HRTest do
     end
 
     test "create_duty/1 with valid data creates a duty" do
-      valid_attrs = %{day: ~N[2022-06-27 08:49:00], description: "some description", name: "some name"}
+      valid_attrs = %{
+        day: ~N[2022-06-27 08:49:00],
+        description: "some description",
+        name: "some name"
+      }
 
       assert {:ok, %Duty{} = duty} = HR.create_duty(valid_attrs)
       assert duty.day == ~N[2022-06-27 08:49:00]
@@ -329,7 +373,12 @@ defmodule Farm.HRTest do
 
     test "update_duty/2 with valid data updates the duty" do
       duty = duty_fixture()
-      update_attrs = %{day: ~N[2022-06-28 08:49:00], description: "some updated description", name: "some updated name"}
+
+      update_attrs = %{
+        day: ~N[2022-06-28 08:49:00],
+        description: "some updated description",
+        name: "some updated name"
+      }
 
       assert {:ok, %Duty{} = duty} = HR.update_duty(duty, update_attrs)
       assert duty.day == ~N[2022-06-28 08:49:00]

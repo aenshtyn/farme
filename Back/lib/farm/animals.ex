@@ -23,6 +23,7 @@ defmodule Farm.Animals do
     |> Repo.all()
     |> Repo.preload(:milks)
     |> Repo.preload(:events)
+
     # Repo.all(Cow)
   end
 

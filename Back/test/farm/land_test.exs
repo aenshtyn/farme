@@ -95,7 +95,9 @@ defmodule Farm.LandTest do
       arable_land = arable_land_fixture()
       update_attrs = %{description: "some updated description", number: 43, size: 456.7}
 
-      assert {:ok, %Arable_land{} = arable_land} = Land.update_arable_land(arable_land, update_attrs)
+      assert {:ok, %Arable_land{} = arable_land} =
+               Land.update_arable_land(arable_land, update_attrs)
+
       assert arable_land.description == "some updated description"
       assert arable_land.number == 43
       assert arable_land.size == 456.7

@@ -17,6 +17,6 @@ defmodule Farm.HR.Patron do
   def changeset(patron, attrs) do
     patron
     |> cast(attrs, [:name, :phone_number, :address, :role_id])
-    |> validate_required([:name, :phone_number, :address ,:role_id])
+    |> validate_required([:name, :phone_number, :address, :role_id])
   end
 end

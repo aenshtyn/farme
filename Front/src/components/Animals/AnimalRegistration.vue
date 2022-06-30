@@ -34,26 +34,32 @@
           v-model="form.dob"
           name="age"
         />
-        <div class="form-group">
-          <label for="owner">owner</label>
-          <input
-            type="text"
-            class="form-control"
-            id="owner"
-            required
-            v-model="form.owner"
-            name="owner"
-          />
         </div>
-      </div>
+        <div class="form-group">
+          <label for="owner">Owner</label>
+          <div class="select">
+            <select v-model="form.patron_id">
+              <option
+                v-for="patron in patrons"
+                :key="patron.id"
+                :value="patron.id"
+              >
+                {{ patron.name }}
+              </option>
+            </select>
+          </div>
+          <span class="focus"></span>
+        </div>
       <button type="submit" class="btn btn-success">Submit</button>
     </div>
     <!-- </div> -->
   </form>
 </template>
 <script>
+import usePatrons from "../../services/PatronDataService";
 import useCows from "../../services/AnimalDataService";
-import { reactive } from "vue";
+import { ref, reactive } from "vue";
+import { onMounted } from "vue";
 
 export default {
   setup() {
@@ -61,19 +67,31 @@ export default {
       name: "",
       breed: "",
       dob: "",
-      owner: "",
+      patron_id: "",
     });
 
+    const patronsToggle = ref(false);
+    const { patrons, getPatrons } = usePatrons();
     const { errors, storeCow } = useCows();
 
     const saveCow = async () => {
       await storeCow({ cow: { ...form } });
     };
 
+    const showPatrons = () => {
+      patronsToggle.value = !patronsToggle.value;
+    };
+
+    onMounted(getPatrons);
+
     return {
       form,
       errors,
       saveCow,
+      showPatrons,
+      patronsToggle,
+      getPatrons,
+      patrons,
     };
   },
 };

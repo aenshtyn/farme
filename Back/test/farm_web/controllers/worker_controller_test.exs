@@ -3,8 +3,20 @@ defmodule FarmWeb.WorkerControllerTest do
 
   import Farm.HRFixtures
 
-  @create_attrs %{address: "some address", dob: ~N[2022-06-27 08:30:00], name: "some name", phone_number: 42, report_date: ~N[2022-06-27 08:30:00]}
-  @update_attrs %{address: "some updated address", dob: ~N[2022-06-28 08:30:00], name: "some updated name", phone_number: 43, report_date: ~N[2022-06-28 08:30:00]}
+  @create_attrs %{
+    address: "some address",
+    dob: ~N[2022-06-27 08:30:00],
+    name: "some name",
+    phone_number: 42,
+    report_date: ~N[2022-06-27 08:30:00]
+  }
+  @update_attrs %{
+    address: "some updated address",
+    dob: ~N[2022-06-28 08:30:00],
+    name: "some updated name",
+    phone_number: 43,
+    report_date: ~N[2022-06-28 08:30:00]
+  }
   @invalid_attrs %{address: nil, dob: nil, name: nil, phone_number: nil, report_date: nil}
 
   describe "index" do

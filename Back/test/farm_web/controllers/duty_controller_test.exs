@@ -3,8 +3,16 @@ defmodule FarmWeb.DutyControllerTest do
 
   import Farm.HRFixtures
 
-  @create_attrs %{day: ~N[2022-06-27 08:35:00], description: "some description", name: "some name"}
-  @update_attrs %{day: ~N[2022-06-28 08:35:00], description: "some updated description", name: "some updated name"}
+  @create_attrs %{
+    day: ~N[2022-06-27 08:35:00],
+    description: "some description",
+    name: "some name"
+  }
+  @update_attrs %{
+    day: ~N[2022-06-28 08:35:00],
+    description: "some updated description",
+    name: "some updated name"
+  }
   @invalid_attrs %{day: nil, description: nil, name: nil}
 
   describe "index" do

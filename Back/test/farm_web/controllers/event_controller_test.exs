@@ -3,8 +3,18 @@ defmodule FarmWeb.EventControllerTest do
 
   import Farm.EventsFixtures
 
-  @create_attrs %{activity: "some activity", cost: 42, day: ~N[2022-06-16 07:50:00], name: "some name"}
-  @update_attrs %{activity: "some updated activity", cost: 43, day: ~N[2022-06-17 07:50:00], name: "some updated name"}
+  @create_attrs %{
+    activity: "some activity",
+    cost: 42,
+    day: ~N[2022-06-16 07:50:00],
+    name: "some name"
+  }
+  @update_attrs %{
+    activity: "some updated activity",
+    cost: 43,
+    day: ~N[2022-06-17 07:50:00],
+    name: "some updated name"
+  }
   @invalid_attrs %{activity: nil, cost: nil, day: nil, name: nil}
 
   describe "index" do

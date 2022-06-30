@@ -17,22 +17,19 @@ defmodule FarmWeb.Api.PatronView do
       phone_number: patron.phone_number,
       address: patron.address,
       role_id: patron.role_id,
-      cows: Enum.map(patron.cows, &render_cows(&1)),
+      cows: Enum.map(patron.cows, &render_cows(&1))
     }
   end
-
 
   def render_cows(cows) do
     %{name: cows.name, age: cows.age, breed: cows.breed}
   end
 
   def render_milks(milks) do
-    %{day: milks.day, schedule: milks.milking_time, volume: milks.volume }
+    %{day: milks.day, schedule: milks.milking_time, volume: milks.volume}
   end
 
   def render_events(events) do
-    %{day: events.day, activity: events.activity, cost: events.cost }
+    %{day: events.day, activity: events.activity, cost: events.cost}
   end
-
-
 end

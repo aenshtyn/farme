@@ -19,7 +19,6 @@ defmodule FarmWeb.Api.WorkerView do
       report_date: worker.report_date,
       address: worker.address,
       role_id: worker.role_id
-
     }
   end
 end

@@ -37,4 +37,20 @@ defmodule Farm.InventoryFixtures do
 
     medication
   end
+
+  @doc """
+  Generate a product.
+  """
+  def product_fixture(attrs \\ %{}) do
+    {:ok, product} =
+      attrs
+      |> Enum.into(%{
+        name: "some name",
+        quantity: 120.5,
+        unit: "some unit"
+      })
+      |> Farm.Inventory.create_product()
+
+    product
+  end
 end

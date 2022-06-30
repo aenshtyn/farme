@@ -216,6 +216,7 @@ defmodule Farm.HR do
   def list_roles do
     Role
     |> Repo.all()
+
     # |> Repo.preload(:patrons)
     # |> Repo.all(:workers)
   end

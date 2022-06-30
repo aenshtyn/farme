@@ -17,6 +17,7 @@ defmodule Farm.Products do
       [%Milk{}, ...]
 
   """
+
   # def list_milks(cow) do
   #   # from(m in Milk, where: [cow_id: ^cow.id], order_by: [asc: :id])
   #   # |> Repo.all()
@@ -128,5 +129,4 @@ defmodule Farm.Products do
   def change_milk(%Milk{} = milk, attrs \\ %{}) do
     Milk.changeset(milk, attrs)
   end
-
 end

@@ -35,6 +35,11 @@ defmodule FarmWeb.Router do
     resources "/patrons", PatronController
     resources "/arable", ArableController
     resources "/paddocks", PaddockController
+    resources "/products", ProductController
+    # Finance
+    resources "/sales", SalesController
+    resources "/procurements", ProcurementsController
+    resources "/salarys", SalaryController
   end
 
   pipeline :api_authenticated do
@@ -45,26 +50,40 @@ defmodule FarmWeb.Router do
   scope "/api", FarmWeb.Api, as: :api do
     pipe_through :api
 
+    #Products
     resources "/calfs", CalfController
-    # get "/milks/:name", MilkController, :production_by_animal_name
-    # get "/milks/:milking_time", MilkController, :production_by_milking_time
-    get "/milks/:day", MilkController, :production_by_date
     resources "/milks", MilkController
-    resources "/events", EventController
     resources "/cows", CowController
+    get "/cows/total", CowController, :total_number
+    resources "/donkeys", DonkeyController
+    resources "/events", EventController
+
+    #Inventory
     resources "/machinerys", MachineryController
     resources "/medications", MedicationController
+
+    # HR
     resources "/workers", WorkerController
-    resources "/donkeys", DonkeyController
     resources "/duties", DutyController
     resources "/roles", RoleController
     resources "/patrons", PatronController
+
+    # Land
     resources "/arable", ArableController
     resources "/paddocks", PaddockController
+
+    # Products
+    resources "/products", ProductController
+
+    # Finance
+    resources "/sales", SalesController
+    resources "/procurements", ProcurementsController
+    resources "/salarys", SalaryController
+
+    # Accounts
     post "/register", UserRegistrationController, :register
     post "/sign_in", SessionController, :create
     post "/sign_out", SessionController, :delete
-    get "/cows/total", CowController, :total_number
   end
 
   ## AUthenticated api routes

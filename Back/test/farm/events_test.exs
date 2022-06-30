@@ -21,7 +21,12 @@ defmodule Farm.EventsTest do
     end
 
     test "create_event/1 with valid data creates a event" do
-      valid_attrs = %{activity: "some activity", cost: 42, day: ~N[2022-06-16 07:50:00], name: "some name"}
+      valid_attrs = %{
+        activity: "some activity",
+        cost: 42,
+        day: ~N[2022-06-16 07:50:00],
+        name: "some name"
+      }
 
       assert {:ok, %Event{} = event} = Events.create_event(valid_attrs)
       assert event.activity == "some activity"
@@ -36,7 +41,13 @@ defmodule Farm.EventsTest do
 
     test "update_event/2 with valid data updates the event" do
       event = event_fixture()
-      update_attrs = %{activity: "some updated activity", cost: 43, day: ~N[2022-06-17 07:50:00], name: "some updated name"}
+
+      update_attrs = %{
+        activity: "some updated activity",
+        cost: 43,
+        day: ~N[2022-06-17 07:50:00],
+        name: "some updated name"
+      }
 
       assert {:ok, %Event{} = event} = Events.update_event(event, update_attrs)
       assert event.activity == "some updated activity"

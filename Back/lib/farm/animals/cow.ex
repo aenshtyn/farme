@@ -4,14 +4,15 @@ defmodule Farm.Animals.Cow do
   import Ecto.Query
 
   alias Farm.HR.Patron
+  alias Farm.Inventory.Product
 
   schema "cows" do
     field(:breed, :string)
     field(:dob, :date)
     field(:age, :integer)
     field(:name, :string)
-    # field(:owner, :string)
     belongs_to :patron, Patron
+    belongs_to :product, Product
     has_many(:events, Farm.Events.Event)
     has_many(:milks, Farm.Products.Milk)
 
@@ -21,7 +22,7 @@ defmodule Farm.Animals.Cow do
   @doc false
   def changeset(cow, attrs) do
     cow
-    |> cast(attrs, [:name, :dob, :breed, :patron_id, :age])
+    |> cast(attrs, [:name, :dob, :breed, :patron_id, :age, :product_id ])
     |> validate_required([:name, :dob, :breed, :patron_id])
     |> age_in_months()
   end

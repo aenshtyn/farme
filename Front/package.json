@@ -23,6 +23,7 @@
         "vue": "^3.0.0",
         "vue-chartjs": "^3.5.1",
         "vue-router": "^4.0.12",
+        "vue-simple-search-dropdown": "^1.0.1",
         "vuex": "^4.0.2",
         "yup": "^0.32.11"
     },

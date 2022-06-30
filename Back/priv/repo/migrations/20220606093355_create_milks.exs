@@ -7,6 +7,7 @@ defmodule Farm.Repo.Migrations.CreateMilks do
       add :volume, :float
       add :milking_time, :string
       add :cow_id, references(:cows, on_delete: :delete_all)
+      add :product_id, references(:products, on_delete: :nothing)
 
       timestamps()
     end

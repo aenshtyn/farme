@@ -51,7 +51,9 @@ defmodule FarmWeb.Arable_landControllerTest do
     setup [:create_arable_land]
 
     test "redirects when data is valid", %{conn: conn, arable_land: arable_land} do
-      conn = put(conn, Routes.arable_land_path(conn, :update, arable_land), arable_land: @update_attrs)
+      conn =
+        put(conn, Routes.arable_land_path(conn, :update, arable_land), arable_land: @update_attrs)
+
       assert redirected_to(conn) == Routes.arable_land_path(conn, :show, arable_land)
 
       conn = get(conn, Routes.arable_land_path(conn, :show, arable_land))
@@ -59,7 +61,9 @@ defmodule FarmWeb.Arable_landControllerTest do
     end
 
     test "renders errors when data is invalid", %{conn: conn, arable_land: arable_land} do
-      conn = put(conn, Routes.arable_land_path(conn, :update, arable_land), arable_land: @invalid_attrs)
+      conn =
+        put(conn, Routes.arable_land_path(conn, :update, arable_land), arable_land: @invalid_attrs)
+
       assert html_response(conn, 200) =~ "Edit Arable land"
     end
   end

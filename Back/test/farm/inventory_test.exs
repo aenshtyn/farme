@@ -142,4 +142,62 @@ defmodule Farm.InventoryTest do
       assert %Ecto.Changeset{} = Inventory.change_medication(medication)
     end
   end
+
+  describe "products" do
+    alias Farm.Inventory.Product
+
+    import Farm.InventoryFixtures
+
+    @invalid_attrs %{name: nil, quantity: nil, unit: nil}
+
+    test "list_products/0 returns all products" do
+      product = product_fixture()
+      assert Inventory.list_products() == [product]
+    end
+
+    test "get_product!/1 returns the product with given id" do
+      product = product_fixture()
+      assert Inventory.get_product!(product.id) == product
+    end
+
+    test "create_product/1 with valid data creates a product" do
+      valid_attrs = %{name: "some name", quantity: 120.5, unit: "some unit"}
+
+      assert {:ok, %Product{} = product} = Inventory.create_product(valid_attrs)
+      assert product.name == "some name"
+      assert product.quantity == 120.5
+      assert product.unit == "some unit"
+    end
+
+    test "create_product/1 with invalid data returns error changeset" do
+      assert {:error, %Ecto.Changeset{}} = Inventory.create_product(@invalid_attrs)
+    end
+
+    test "update_product/2 with valid data updates the product" do
+      product = product_fixture()
+      update_attrs = %{name: "some updated name", quantity: 456.7, unit: "some updated unit"}
+
+      assert {:ok, %Product{} = product} = Inventory.update_product(product, update_attrs)
+      assert product.name == "some updated name"
+      assert product.quantity == 456.7
+      assert product.unit == "some updated unit"
+    end
+
+    test "update_product/2 with invalid data returns error changeset" do
+      product = product_fixture()
+      assert {:error, %Ecto.Changeset{}} = Inventory.update_product(product, @invalid_attrs)
+      assert product == Inventory.get_product!(product.id)
+    end
+
+    test "delete_product/1 deletes the product" do
+      product = product_fixture()
+      assert {:ok, %Product{}} = Inventory.delete_product(product)
+      assert_raise Ecto.NoResultsError, fn -> Inventory.get_product!(product.id) end
+    end
+
+    test "change_product/1 returns a product changeset" do
+      product = product_fixture()
+      assert %Ecto.Changeset{} = Inventory.change_product(product)
+    end
+  end
 end
